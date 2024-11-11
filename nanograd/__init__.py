@@ -1,1 +1,1 @@
-from .tensor import *
+from .scalar import *

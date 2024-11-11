@@ -8,10 +8,10 @@ A tiny Autograd engine inspired by [Micrograd](https://github.com/karpathy/micro
 Below is a slightly contrived example showing a number of possible supported operations:
 
 ```python
-from nanograd import Tensor
+from nanograd import Scalar
 
-a = Tensor(-4.0)
-b = Tensor(2.0)
+a = Scalar(-4.0)
+b = Scalar(2.0)
 c = a + b
 d = a * b + b**3
 c += c + 1

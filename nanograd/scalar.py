@@ -1,12 +1,12 @@
-__all__ = ['Tensor']
+__all__ = ['Scalar']
 
 
-class Tensor(object):
+class Scalar(object):
     def __init__(self, data):
         self.data = data
 
     def __repr__(self):
-        return f'Tensor({self.data})'
+        return f'Scalar({self.data})'
     
     def __add__(self, other):
         return self.__class__(self.data + other.data)

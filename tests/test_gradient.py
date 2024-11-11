@@ -1,8 +1,10 @@
 import unittest
+
 import nanograd
+from nanograd import gradient
 
 
-class TensorTest(unittest.TestCase):
+class GradientTest(unittest.TestCase):
     def test_add_backward(self):
         pass
 
