@@ -1,4 +1,6 @@
+import math
 import unittest
+
 import nanograd
 
 
@@ -77,8 +79,15 @@ class ScalarTest(unittest.TestCase):
         # Dividing Scalar with scalar value
         a = nanograd.Scalar(3.0)
         b = 2.0
-        self.assertEqual(a + b, nanograd.Scalar(5.0),
+        self.assertEqual(a / b, nanograd.Scalar(5.0),
                          "Failed division with scalar test")
+        self.assertEqual(b / a, nanograd.Scalar(5.0),
+                         "Failed rdivision with scalar test")
+
+    def tanh(self):
+        x = nanograd.Scalar(3.14)
+        self.assertAlmostEqual(x.tanh(), math.tanh(x),
+                               'Failed tanh test')
 
     def test_backward(self):
         # Addition test
