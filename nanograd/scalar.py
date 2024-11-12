@@ -1,4 +1,4 @@
-__all__ = ['Scalar']
+__all__ = ["Scalar"]
 
 
 class Scalar(object):
@@ -6,7 +6,7 @@ class Scalar(object):
         self.data = data
 
     def __repr__(self):
-        return f'Scalar({self.data})'
-    
+        return f"Scalar({self.data})"
+
     def __add__(self, other):
         return self.__class__(self.data + other.data)

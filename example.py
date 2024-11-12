@@ -12,7 +12,7 @@ e = c - d
 f = e**2
 g = f / 2.0
 g += 10.0 / f
-print(f'{g.data:.4f}') # prints 24.7041, the outcome of this forward pass
+print(f"{g.data:.4f}")  # prints 24.7041, the outcome of this forward pass
 g.backward()
-print(f'{a.grad:.4f}') # prints 138.8338, i.e. the numerical value of dg/da
-print(f'{b.grad:.4f}') # prints 645.5773, i.e. the numerical value of dg/db
+print(f"{a.grad:.4f}")  # prints 138.8338, i.e. the numerical value of dg/da
+print(f"{b.grad:.4f}")  # prints 645.5773, i.e. the numerical value of dg/db
