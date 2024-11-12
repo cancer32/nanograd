@@ -13,7 +13,8 @@ def draw_dot(root, format="svg", rankdir="LR"):
     )  # , node_attr={'rankdir': 'TB'})
 
     for n in nodes:
-        label_attrs = [(n.label or ""), "data %.4f" % n.data, "grad %.4f" % n.grad]
+        label_attrs = [(n.label or ""), "data %.4f" %
+                       n.data, "grad %.4f" % n.grad]
         label = f"{' | '.join(label_attrs)}"
         dot.node(name=str(id(n)), label=label, shape="record")
         if n._op:

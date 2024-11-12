@@ -10,70 +10,75 @@ class ScalarTest(unittest.TestCase):
         label = "lable_1"
         ch1 = nanograd.Scalar(3.14)
         x = nanograd.scalar(data, _children=(ch1,), _op=_op, label=label)
-        self.assertEqual(x.data, data, "Failed Scalar.data attribute test")
-        self.assertEqual(x._children, (ch1,), "Failed Scalar._children attribute test")
-        self.assertEqual(x._op, _op, "Failed Scalar._op attribute test")
-        self.assertEqual(x.label, label, "Failed Scalar.label attribute test")
+        self.assertEqual(x.data, data,
+                         "Failed Scalar.data attribute test")
+        self.assertEqual(x._children, (ch1,),
+                         "Failed Scalar._children attribute test")
+        self.assertEqual(x._op, _op,
+                         "Failed Scalar._op attribute test")
+        self.assertEqual(x.label, label,
+                         "Failed Scalar.label attribute test")
 
     def test_item(self):
         data = 3.14
         t1 = nanograd.Scalar(data)
-        self.assertEqual(t1.item(), data, "Failed item() method test")
+        self.assertEqual(t1.item(), data,
+                         "Failed item() method test")
 
     def test__repr__(self):
         # Repr test
         data = -3.14
         return_str = f"Scalar({data})"
         t1 = nanograd.Scalar(data)
-        self.assertEqual(t1.__repr__(), return_str, "Failed Scalar.__repr__() test")
+        self.assertEqual(t1.__repr__(), return_str,
+                         "Failed Scalar.__repr__() test")
 
     def test_new(self):
         x = nanograd.Scalar.new(3.19)
-        self.assertEqual(isinstance(x, nanograd.Scalar, "Failed new staticmethod test"))
+        self.assertEqual(isinstance(x, nanograd.Scalar,
+                         "Failed new staticmethod test"))
 
     def test_add(self):
         # Adding two Scalars
         a = nanograd.Scalar(3.0)
         b = nanograd.Scalar(2.0)
-        self.assertEqual(a + b, nanograd.Scalar(5.0), "Failed addition test")
+        self.assertEqual(a + b, nanograd.Scalar(5.0),
+                         "Failed addition test")
 
         # Adding Scalar with scalar value
         a = nanograd.Scalar(3.0)
         b = 2.0
-        self.assertEqual(
-            a + b, nanograd.Scalar(5.0), "Failed addition with scalar test"
-        )
-        self.assertEqual(
-            b + a, nanograd.Scalar(5.0), "Failed raddition with scalar test"
-        )
+        self.assertEqual(a + b, nanograd.Scalar(5.0),
+                         "Failed addition with scalar test")
+        self.assertEqual(b + a, nanograd.Scalar(5.0),
+                         "Failed raddition with scalar test")
 
     def test_muliply(self):
         # Muliplying two Scalars
         a = nanograd.Scalar(3.0)
         b = nanograd.Scalar(2.0)
-        self.assertEqual(a * b, nanograd.Scalar(5.0), "Failed multiply test")
+        self.assertEqual(a * b, nanograd.Scalar(5.0),
+                         "Failed multiply test")
 
         # Muliplying Scalar with scalar value
         a = nanograd.Scalar(3.0)
         b = 2.0
-        self.assertEqual(
-            a * b, nanograd.Scalar(6.0), "Failed multiply with scalar test"
-        )
-        self.assertEqual(
-            b * a, nanograd.Scalar(6.0), "Failed rmultiply with scalar test"
-        )
+        self.assertEqual(a * b, nanograd.Scalar(6.0),
+                         "Failed multiply with scalar test")
+        self.assertEqual(b * a, nanograd.Scalar(6.0),
+                         "Failed rmultiply with scalar test")
 
     def test_divide(self):
         # Dividing two Scalars
         a = nanograd.Scalar(3.0)
         b = nanograd.Scalar(2.0)
-        self.assertEqual(a / b, nanograd.Scalar(5.0), "Failed division test")
+        self.assertEqual(a / b, nanograd.Scalar(5.0),
+                         "Failed division test")
         # Dividing Scalar with scalar value
         a = nanograd.Scalar(3.0)
         b = 2.0
-        self.assertEqual(
-            a + b, nanograd.Scalar(5.0), "Failed division with scalar test"
-        )
+        self.assertEqual(a + b, nanograd.Scalar(5.0),
+                         "Failed division with scalar test")
 
     def test_backward(self):
         # Addition test
