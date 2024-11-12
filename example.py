@@ -1,7 +1,7 @@
 import nanograd
 
-a = nanograd.Tensor(-4.0)
-b = nanograd.Tensor(2.0)
+a = nanograd.Scalar(-4.0)
+b = nanograd.Scalar(2.0)
 c = a + b
 d = a * b + b**3
 c += c + 1

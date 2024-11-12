@@ -4,17 +4,21 @@ import nanograd
 
 class ScalarTest(unittest.TestCase):
     def test_attributes(self):
-        # data attribute test
+        # attributes test
         data = -2.0
-        t1 = nanograd.Scalar(data)
-        self.assertEqual(t1.data, data,
+        _op = '+'
+        label = 'lable_1'
+        ch1 = nanograd.Scalar(3.14)
+        x = nanograd.scalar(data, _children=(ch1,),
+                            _op=_op, label=label)
+        self.assertEqual(x.data, data,
                          'Failed Scalar.data attribute test')
-
-        # data attribute test
-        data = -2.0
-        t1 = nanograd.Scalar(data)
-        self.assertEqual(t1.data, data,
-                         'Failed Scalar.data attribute test')
+        self.assertEqual(x._children, (ch1,),
+                         'Failed Scalar._children attribute test')
+        self.assertEqual(x._op, _op,
+                         'Failed Scalar._op attribute test')
+        self.assertEqual(x.label, label,
+                         'Failed Scalar.label attribute test')
 
     def test_item(self):
         data = 3.14
