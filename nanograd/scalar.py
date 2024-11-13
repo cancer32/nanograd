@@ -7,6 +7,7 @@ class Scalar(object):
         self.label = label or ''
         self._children = _children or ()
         self._op = _op or ''
+        self.grad = 0.0
 
     def __repr__(self):
         return f"Scalar({self.data})"
@@ -23,10 +24,17 @@ class Scalar(object):
         if not isinstance(data, Scalar):
             data = Scalar(data)
         return data
+    
+    def __eq__(self, other):
+        other = self.new(other)
+        return self.data == other.data
 
     def __add__(self, other):
-        return self.__class__(self.data + other.data)
-
+        other = self.new(other)
+        ret = self.__class__(self.data + other.data,
+                             _children=(self, other),
+                             _op='+')
+        return ret
 
     def item(self):
         """Returns the original scalar value

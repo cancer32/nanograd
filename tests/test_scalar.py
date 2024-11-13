@@ -41,6 +41,20 @@ class ScalarTest(unittest.TestCase):
         self.assertTrue(isinstance(x, nanograd.Scalar),
                         "Failed new staticmethod test")
 
+    def test_equal(self):
+        # Checking equality
+        self.assertEqual(nanograd.Scalar(3.0), nanograd.Scalar(3.0),
+                         "Failed equality test")
+        self.assertNotEqual(nanograd.Scalar(3.0), nanograd.Scalar(2.0),
+                            "Failed non equality test")
+
+        a = nanograd.Scalar(3.0)
+        b = 3.0
+        self.assertEqual(a, b,
+                         "Failed equality test with scalar")
+        self.assertEqual(b, a,
+                         "Failed requality test with scalar")
+
     def test_add(self):
         # Adding two Scalars
         a = nanograd.Scalar(3.0)
@@ -52,9 +66,9 @@ class ScalarTest(unittest.TestCase):
         a = nanograd.Scalar(3.0)
         b = 2.0
         self.assertEqual(a + b, nanograd.Scalar(5.0),
-                         "Failed addition with scalar test")
+                         "Failed addition test with scalar ")
         self.assertEqual(b + a, nanograd.Scalar(5.0),
-                         "Failed raddition with scalar test")
+                         "Failed raddition test with scalar")
 
     def test_muliply(self):
         # Muliplying two Scalars
