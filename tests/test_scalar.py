@@ -11,7 +11,7 @@ class ScalarTest(unittest.TestCase):
         _op = "+"
         label = "lable_1"
         ch1 = nanograd.Scalar(3.14)
-        x = nanograd.scalar(data, _children=(ch1,), _op=_op, label=label)
+        x = nanograd.Scalar(data, _children=(ch1,), _op=_op, label=label)
         self.assertEqual(x.data, data,
                          "Failed Scalar.data attribute test")
         self.assertEqual(x._children, (ch1,),
@@ -37,8 +37,9 @@ class ScalarTest(unittest.TestCase):
 
     def test_new(self):
         x = nanograd.Scalar.new(3.19)
-        self.assertEqual(isinstance(x, nanograd.Scalar,
-                         "Failed new staticmethod test"))
+        print(x)
+        self.assertTrue(isinstance(x, nanograd.Scalar),
+                        "Failed new staticmethod test")
 
     def test_add(self):
         # Adding two Scalars
