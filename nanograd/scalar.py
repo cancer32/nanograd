@@ -24,7 +24,7 @@ class Scalar(object):
         if not isinstance(data, Scalar):
             data = Scalar(data)
         return data
-    
+
     def __eq__(self, other):
         other = self.new(other)
         return self.data == other.data
@@ -35,6 +35,9 @@ class Scalar(object):
                              _children=(self, other),
                              _op='+')
         return ret
+
+    def __radd__(self, other):
+        return self + other
 
     def item(self):
         """Returns the original scalar value
