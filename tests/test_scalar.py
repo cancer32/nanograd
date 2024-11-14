@@ -90,7 +90,7 @@ class ScalarTest(unittest.TestCase):
         # Muliplying two Scalars
         a = nanograd.Scalar(3.0)
         b = nanograd.Scalar(2.0)
-        self.assertEqual(a * b, nanograd.Scalar(5.0),
+        self.assertEqual(a * b, nanograd.Scalar(6.0),
                          "Failed multiply test")
 
         # Muliplying Scalar with scalar value
