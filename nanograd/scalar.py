@@ -41,9 +41,9 @@ class Scalar(object):
 
     def __add__(self, other):
         other = self.new(other)
-        ret = self.__class__(self.data + other.data,
-                             _children=(self, other),
-                             _op='+')
+        ret = Scalar(self.data + other.data,
+                     _children=(self, other),
+                     _op='+')
         return ret
 
     def __radd__(self, other):
@@ -51,9 +51,9 @@ class Scalar(object):
 
     def __mul__(self, other):
         other = self.new(other)
-        ret = self.__class__(self.data * other.data,
-                             _children=(self, other),
-                             _op='*')
+        ret = Scalar(self.data * other.data,
+                     _children=(self, other),
+                     _op='*')
         return ret
 
     def __rmul__(self, other):
@@ -61,9 +61,9 @@ class Scalar(object):
 
     def __truediv__(self, other):
         other = self.new(other)
-        ret = self.__class__(self.data / other.data,
-                             _children=(self, other),
-                             _op='/')
+        ret = Scalar(self.data / other.data,
+                     _children=(self, other),
+                     _op='/')
         return ret
 
     def __rtruediv__(self, other):
