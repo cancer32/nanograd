@@ -29,6 +29,14 @@ class Scalar(object):
         other = self.new(other)
         return self.data == other.data
 
+    def __lt__(self, other):
+        other = self.new(other)
+        return self.data < other.data
+
+    def __le__(self, other):
+        other = self.new(other)
+        return self.data <= other.data
+
     def __add__(self, other):
         other = self.new(other)
         ret = self.__class__(self.data + other.data,

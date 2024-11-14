@@ -55,6 +55,22 @@ class ScalarTest(unittest.TestCase):
         self.assertEqual(b, a,
                          "Failed requality test with scalar")
 
+    def test_less_greater(self):
+        # Checking if value is lesser than other
+        self.assertLess(nanograd.Scalar(1.2), nanograd.Scalar(3.0),
+                        "Failed less than test")
+        self.assertLessEqual(nanograd.Scalar(1.2), nanograd.Scalar(1.2),
+                             "Failed less than equal test")
+        self.assertGreater(nanograd.Scalar(3.0), nanograd.Scalar(2.0),
+                           "Failed greater than test")
+        self.assertGreaterEqual(nanograd.Scalar(3.0), nanograd.Scalar(3.0),
+                                "Failed greater than equal test")
+
+        self.assertLess(nanograd.Scalar(3.5), 6,
+                        "Failed less than test with scalar")
+        self.assertGreater(10.2, nanograd.Scalar(3.0),
+                           "Failed greater than with scalar")
+
     def test_add(self):
         # Adding two Scalars
         a = nanograd.Scalar(3.0)
