@@ -115,9 +115,9 @@ class ScalarTest(unittest.TestCase):
         self.assertEqual(b / a, nanograd.Scalar(0.6666666666666666),
                          "Failed rdivision with scalar test")
 
-    def tanh(self):
+    def test_tanh(self):
         x = nanograd.Scalar(3.14)
-        self.assertAlmostEqual(x.tanh(), math.tanh(x),
+        self.assertAlmostEqual(x.tanh().item(), math.tanh(x.item()),
                                'Failed tanh test')
 
     def test_backward(self):

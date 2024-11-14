@@ -1,5 +1,7 @@
 __all__ = ["Scalar"]
 
+import math
+
 
 class Scalar(object):
     def __init__(self, data, label=None, _children=None, _op=None):
@@ -67,6 +69,12 @@ class Scalar(object):
     def __rtruediv__(self, other):
         other = self.new(other)
         return other / self
+
+    def tanh(self):
+        ret = Scalar((math.exp(2*self.data) - 1)/(math.exp(2*self.data) + 1),
+                     _children=(self,),
+                     _op='tanh')
+        return ret
 
     def item(self):
         """Returns the original scalar value
