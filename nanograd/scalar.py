@@ -57,6 +57,17 @@ class Scalar(object):
     def __rmul__(self, other):
         return self * other
 
+    def __truediv__(self, other):
+        other = self.new(other)
+        ret = self.__class__(self.data / other.data,
+                             _children=(self, other),
+                             _op='/')
+        return ret
+
+    def __rtruediv__(self, other):
+        other = self.new(other)
+        return other / self
+
     def item(self):
         """Returns the original scalar value
         """

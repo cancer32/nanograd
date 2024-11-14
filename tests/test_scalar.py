@@ -105,14 +105,14 @@ class ScalarTest(unittest.TestCase):
         # Dividing two Scalars
         a = nanograd.Scalar(3.0)
         b = nanograd.Scalar(2.0)
-        self.assertEqual(a / b, nanograd.Scalar(5.0),
+        self.assertEqual(a / b, nanograd.Scalar(1.5),
                          "Failed division test")
         # Dividing Scalar with scalar value
         a = nanograd.Scalar(3.0)
         b = 2.0
-        self.assertEqual(a / b, nanograd.Scalar(5.0),
+        self.assertEqual(a / b, nanograd.Scalar(1.5),
                          "Failed division with scalar test")
-        self.assertEqual(b / a, nanograd.Scalar(5.0),
+        self.assertEqual(b / a, nanograd.Scalar(0.6666666666666666),
                          "Failed rdivision with scalar test")
 
     def tanh(self):
