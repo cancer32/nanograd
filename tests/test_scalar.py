@@ -126,7 +126,7 @@ class ScalarTest(unittest.TestCase):
         b = a + a
         b.label = "b"
         b.backward()
-        self.assertEqual(b.grad, 2)
+        self.assertEqual(b.grad, 2.0)
 
         # Addition/Mutiplication test
         a = nanograd.Scalar(-2.0, label="a")
