@@ -29,8 +29,8 @@ def truediv_backward(node):
     :type node: nanograd.Scalar
     """
     ch1, ch2 = node._children
-    ch1.grad += ch2.data * node.grad
-    ch2.grad += ch1.data * node.grad
+    ch1.grad += (1/ch2.data) * node.grad
+    ch2.grad += (-ch1.data/(ch2.data**2)) * node.grad
 
 
 def tanh_backward(node):

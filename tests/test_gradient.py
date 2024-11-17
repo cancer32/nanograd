@@ -23,13 +23,13 @@ class GradientTest(unittest.TestCase):
         self.assertEqual((a.grad, b.grad), (6.28, 3.0),
                          'Failed mul backward test')
 
-    def test_divide_backward(self):
-        a = nanograd.Scalar(1.5)
-        b = nanograd.Scalar(3.14)
+    def test_truediv_backward(self):
+        a = nanograd.Scalar(5)
+        b = nanograd.Scalar(2)
         c = a / b
         c.grad = 2.0
-        gradient.divide_backward(c)
-        self.assertEqual((a.grad, b.grad), (6.28, 3.0),
+        gradient.truediv_backward(c)
+        self.assertEqual((a.grad, b.grad), (1.0, -2.5),
                          'Failed mul backward test')
 
     def test_tanh_backward(self):
