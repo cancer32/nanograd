@@ -22,6 +22,17 @@ def multipy_backward(node):
     ch2.grad += ch1.data * node.grad
 
 
+def truediv_backward(node):
+    """Backpropogation function for division
+
+    :param node: Scalar node
+    :type node: nanograd.Scalar
+    """
+    ch1, ch2 = node._children
+    ch1.grad += ch2.data * node.grad
+    ch2.grad += ch1.data * node.grad
+
+
 def tanh_backward(node):
     """Backpropogation function for tanh
 
