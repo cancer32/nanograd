@@ -129,12 +129,15 @@ class Scalar(object):
                 traverse(child)
             nodes.append(node)
 
+        traverse(self)
         return reversed(nodes)
 
     def backward(self):
         """Backward function to calculate the gradient
         """
         self.grad = 1.0
+        print('WORKING')
+        print(self.nodes())
         for child in self.nodes():
             print(child)
             child.grad_fn(child)
