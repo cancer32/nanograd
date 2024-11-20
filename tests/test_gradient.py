@@ -50,7 +50,7 @@ class GradientTest(unittest.TestCase):
 
     def test_pow_backward(self):
         a = nanograd.Scalar(1.314)
-        b = a.pow(3)
+        b = a ** 3
         b.grad = 2.0
         gradient.pow_backward(b)
         self.assertEqual(a.grad, 3 * (a.data ** 2) * 2,

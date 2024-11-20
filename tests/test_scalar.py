@@ -127,7 +127,7 @@ class ScalarTest(unittest.TestCase):
 
     def test_pow(self):
         x = nanograd.Scalar(10)
-        y = x.pow(3)
+        y = x ** 3
         self.assertEqual(y.item(), (x.item() ** 3),
                          'Failed pow test')
 
@@ -137,7 +137,7 @@ class ScalarTest(unittest.TestCase):
         b = a + a
         b.label = "b"
         b.backward()
-        self.assertEqual(b.grad, 2.0)
+        self.assertEqual(a.grad, 2.0)
 
         # Addition/Mutiplication test
         a = nanograd.Scalar(-2.0, label="a")

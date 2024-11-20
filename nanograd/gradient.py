@@ -52,6 +52,7 @@ def exp_backward(node):
     child, = node._children
     child.grad += node.data * node.grad
 
+
 def pow_backward(node):
     """Backpropogation function for power
 
@@ -59,4 +60,4 @@ def pow_backward(node):
     :type node: nanograd.Scalar
     """
     child, power = node._children
-    child.grad += power.data * (child.data ** (power.data-1)) * node.grad 
+    child.grad += power.data * (child.data ** (power.data-1)) * node.grad
