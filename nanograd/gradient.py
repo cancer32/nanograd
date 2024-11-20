@@ -44,10 +44,19 @@ def tanh_backward(node):
 
 
 def exp_backward(node):
-    """Backpropogation function for tanh
+    """Backpropogation function for exponent
 
     :param node: Scalar node
     :type node: nanograd.Scalar
     """
     child, = node._children
-    child.grad += node.data
+    child.grad += node.data * node.grad
+
+def pow_backward(node):
+    """Backpropogation function for power
+
+    :param node: Scalar node
+    :type node: nanograd.Scalar
+    """
+    child, power = node._children
+    child.grad += power.data * (child.data ** (power.data-1)) * node.grad 

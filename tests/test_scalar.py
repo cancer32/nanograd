@@ -125,6 +125,12 @@ class ScalarTest(unittest.TestCase):
         self.assertAlmostEqual(x.exp().item(), math.exp(x.item()),
                                'Failed exp test')
 
+    def test_pow(self):
+        x = nanograd.Scalar(10)
+        y = x.pow(3)
+        self.assertEqual(y.item(), (x.item() ** 3),
+                         'Failed pow test')
+
     def test_backward(self):
         # Addition test
         a = nanograd.Scalar(3.0, label="a")

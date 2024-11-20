@@ -76,6 +76,13 @@ class Scalar(object):
                      _op='exp')
         return ret
 
+    def pow(self, power):
+        power = self.new(power)
+        ret = Scalar(self.data**power.data,
+                     _children=(self, power),
+                     _op='**')
+        return ret
+
     def tanh(self):
         ret = Scalar((math.exp(2*self.data) - 1)/(math.exp(2*self.data) + 1),
                      _children=(self,),
