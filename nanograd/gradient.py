@@ -41,3 +41,13 @@ def tanh_backward(node):
     """
     child, = node._children
     child.grad += (1 - node.data**2) * node.grad
+
+
+def exp_backward(node):
+    """Backpropogation function for tanh
+
+    :param node: Scalar node
+    :type node: nanograd.Scalar
+    """
+    child, = node._children
+    child.grad += node.data

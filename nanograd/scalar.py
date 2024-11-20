@@ -70,6 +70,12 @@ class Scalar(object):
         other = self.new(other)
         return other / self
 
+    def exp(self):
+        ret = Scalar(math.exp(self.data),
+                     _children=(self,),
+                     _op='exp')
+        return ret
+
     def tanh(self):
         ret = Scalar((math.exp(2*self.data) - 1)/(math.exp(2*self.data) + 1),
                      _children=(self,),

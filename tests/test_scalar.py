@@ -120,6 +120,11 @@ class ScalarTest(unittest.TestCase):
         self.assertAlmostEqual(x.tanh().item(), math.tanh(x.item()),
                                'Failed tanh test')
 
+    def test_exp(self):
+        x = nanograd.Scalar(3.14)
+        self.assertAlmostEqual(x.exp().item(), math.exp(x.item()),
+                               'Failed exp test')
+
     def test_backward(self):
         # Addition test
         a = nanograd.Scalar(3.0, label="a")

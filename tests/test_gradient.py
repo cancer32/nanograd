@@ -36,6 +36,14 @@ class GradientTest(unittest.TestCase):
         a = nanograd.Scalar(100.0)
         b = a.tanh()
         b.grad = 1.0
+        gradient.tanh_backward(b)
         self.assertEqual(a.grad, (1-(b.item()**2)),
-                         'Failed tandh backward test')
+                         'Failed tanh backward test')
 
+    def test_exp_backward(self):
+        a = nanograd.Scalar(100.0)
+        b = a.exp()
+        b.grad = 1.0
+        gradient.exp_backward(b)
+        self.assertEqual(a.grad, b,
+                         'Failed exp backward test')
