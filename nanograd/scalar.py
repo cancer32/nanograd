@@ -2,8 +2,7 @@ __all__ = ["Scalar"]
 
 import math
 
-from . import gradient
-from . import vizualize
+from . import grad
 
 
 class Scalar(object):
@@ -34,6 +33,9 @@ class Scalar(object):
     def grad_fn(node):
         pass
 
+    def __hash__(self):
+        return id(self)
+
     def __eq__(self, other):
         other = self.new(other)
         return self.data == other.data
@@ -51,7 +53,7 @@ class Scalar(object):
         ret = Scalar(self.data + other.data,
                      _children=(self, other),
                      _op='+')
-        ret.grad_fn = gradient.add_backward
+        ret.grad_fn = grad.add_backward
         return ret
 
     def __radd__(self, other):
@@ -62,7 +64,7 @@ class Scalar(object):
         ret = Scalar(self.data * other.data,
                      _children=(self, other),
                      _op='*')
-        ret.grad_fn = gradient.multipy_backward
+        ret.grad_fn = grad.multipy_backward
         return ret
 
     def __rmul__(self, other):
@@ -76,7 +78,7 @@ class Scalar(object):
         ret = Scalar(self.data / other.data,
                      _children=(self, other),
                      _op='/')
-        ret.grad_fn = gradient.truediv_backward
+        ret.grad_fn = grad.truediv_backward
         return ret
 
     def __rtruediv__(self, other):
@@ -87,7 +89,7 @@ class Scalar(object):
         ret = Scalar(math.exp(self.data),
                      _children=(self,),
                      _op='exp')
-        ret.grad_fn = gradient.exp_backward
+        ret.grad_fn = grad.exp_backward
         return ret
 
     def __pow__(self, power):
@@ -95,14 +97,14 @@ class Scalar(object):
         ret = Scalar(self.data**power.data,
                      _children=(self, power),
                      _op='**')
-        ret.grad_fn = gradient.pow_backward
+        ret.grad_fn = grad.pow_backward
         return ret
 
     def tanh(self):
         ret = Scalar((math.exp(2*self.data) - 1)/(math.exp(2*self.data) + 1),
                      _children=(self,),
                      _op='tanh')
-        ret.grad_fn = gradient.tanh_backward
+        ret.grad_fn = grad.tanh_backward
         return ret
 
     def item(self):
@@ -134,6 +136,7 @@ class Scalar(object):
         """
         self.grad = 1.0
         for child in self.nodes():
+            print(child)
             child.grad_fn(child)
 
     def zero_grad(self):
@@ -142,6 +145,3 @@ class Scalar(object):
         self.grad = 0.0
         for child in self.nodes():
             child.grad = 0.0
-
-    def draw(self):
-        vizualize.draw_dot(self)
