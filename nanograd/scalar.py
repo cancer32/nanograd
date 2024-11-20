@@ -68,6 +68,9 @@ class Scalar(object):
     def __rmul__(self, other):
         return self * other
 
+    def __neg__(self):
+        return -1 * self
+
     def __truediv__(self, other):
         other = self.new(other)
         ret = Scalar(self.data / other.data,
