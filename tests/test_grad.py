@@ -14,6 +14,15 @@ class GradTest(unittest.TestCase):
         self.assertEqual((a.grad, b.grad), (2, 2),
                          'Failed add backward test')
 
+    def test_subtract_backward(self):
+        a = nanograd.Scalar(1.5)
+        b = nanograd.Scalar(3.14)
+        c = a - b
+        c.grad = 2.0
+        grad.subtract_backward(c)
+        self.assertEqual((a.grad, b.grad), (2, -2),
+                         'Failed subtract backward test')
+
     def test_mul_backward(self):
         a = nanograd.Scalar(1.5)
         b = nanograd.Scalar(3.14)
@@ -54,4 +63,13 @@ class GradTest(unittest.TestCase):
         b.grad = 2.0
         grad.pow_backward(b)
         self.assertEqual(a.grad, 3 * (a.data ** 2) * 2,
+                         'Failed pow backward test')
+
+
+    def test_relu_backward(self):
+        a = nanograd.Scalar(1.314)
+        b = a.relu()
+        b.grad = 2.0
+        grad.relu_backward(b)
+        self.assertEqual(a.grad, 1 * 2,
                          'Failed pow backward test')

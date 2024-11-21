@@ -11,6 +11,17 @@ def add_backward(node):
         child.grad += 1 * node.grad
 
 
+def subtract_backward(node):
+    """Backpropogation function for subtraction
+
+    :param node: Scalar node
+    :type node: nanograd.Scalar
+    """
+    ch1, ch2 = node._children
+    ch1.grad += 1 * node.grad
+    ch2.grad += -1 * node.grad
+
+
 def multipy_backward(node):
     """Backpropogation function for multiplication
 
@@ -61,3 +72,13 @@ def pow_backward(node):
     """
     child, power = node._children
     child.grad += power.data * (child.data ** (power.data-1)) * node.grad
+
+
+def relu_backward(node):
+    """Backpropogation function for relu activation function
+
+    :param node: Scalar node
+    :type node: nanograd.Scalar
+    """
+    child, = node._children
+    child.grad += (child.data and 1 or 0) * node.grad

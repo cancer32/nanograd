@@ -59,6 +59,17 @@ class Scalar(object):
     def __radd__(self, other):
         return self + other
 
+    def __sub__(self, other):
+        other = self.new(other)
+        ret = Scalar(self.data - other.data,
+                     _children=(self, other),
+                     _op='-')
+        ret.grad_fn = grad.add_backward
+        return ret
+
+    def __rsub__(self, other):
+        return - self + other
+
     def __mul__(self, other):
         other = self.new(other)
         ret = Scalar(self.data * other.data,
@@ -107,6 +118,13 @@ class Scalar(object):
         ret.grad_fn = grad.tanh_backward
         return ret
 
+    def relu(self):
+        ret = Scalar(max([self.data, 0.0]),
+                     _children=(self,),
+                     _op='relu')
+        ret.grad_fn = grad.relu_backward
+        return ret
+
     def item(self):
         """Returns the original scalar value
         """
@@ -136,10 +154,7 @@ class Scalar(object):
         """Backward function to calculate the gradient
         """
         self.grad = 1.0
-        print('WORKING')
-        print(self.nodes())
         for child in self.nodes():
-            print(child)
             child.grad_fn(child)
 
     def zero_grad(self):

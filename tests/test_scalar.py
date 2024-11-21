@@ -86,6 +86,21 @@ class ScalarTest(unittest.TestCase):
         self.assertEqual(b + a, nanograd.Scalar(5.0),
                          "Failed raddition test with scalar")
 
+    def test_subtract(self):
+        # Adding two Scalars
+        a = nanograd.Scalar(3.0)
+        b = nanograd.Scalar(2.0)
+        self.assertEqual(a - b, nanograd.Scalar(1.0),
+                         "Failed subtraction test")
+
+        # Adding Scalar with scalar value
+        a = nanograd.Scalar(3.0)
+        b = 2.0
+        self.assertEqual(a - b, nanograd.Scalar(1.0),
+                         "Failed subtraction test with scalar ")
+        self.assertEqual(b - a, nanograd.Scalar(-1.0),
+                         "Failed rsubtraction test with scalar")
+
     def test_muliply(self):
         # Muliplying two Scalars
         a = nanograd.Scalar(3.0)
@@ -119,6 +134,17 @@ class ScalarTest(unittest.TestCase):
         x = nanograd.Scalar(3.14)
         self.assertAlmostEqual(x.tanh().item(), math.tanh(x.item()),
                                'Failed tanh test')
+
+    def test_relu(self):
+        x = nanograd.Scalar(3.14)
+        self.assertAlmostEqual(x.relu().item(), 3.14,
+                               'Failed relu test 1')
+        x1 = nanograd.Scalar(0)
+        self.assertAlmostEqual(x1.relu().item(), 0,
+                               'Failed relu test 2')
+        x2 = nanograd.Scalar(-2)
+        self.assertAlmostEqual(x2.relu().item(), 0,
+                               'Failed relu test 2')
 
     def test_exp(self):
         x = nanograd.Scalar(3.14)
