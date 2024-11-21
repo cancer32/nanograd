@@ -19,7 +19,7 @@ def subtract_backward(node):
     """
     ch1, ch2 = node._children
     ch1.grad += 1 * node.grad
-    ch2.grad += -1 * node.grad
+    ch2.grad -= 1 * node.grad
 
 
 def multipy_backward(node):
@@ -81,4 +81,4 @@ def relu_backward(node):
     :type node: nanograd.Scalar
     """
     child, = node._children
-    child.grad += (child.data and 1 or 0) * node.grad
+    child.grad += (child.data > 0 and 1 or 0) * node.grad
