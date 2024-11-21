@@ -64,7 +64,7 @@ class Scalar(object):
         ret = Scalar(self.data - other.data,
                      _children=(self, other),
                      _op='-')
-        ret.grad_fn = grad.add_backward
+        ret.grad_fn = grad.subtract_backward
         return ret
 
     def __rsub__(self, other):

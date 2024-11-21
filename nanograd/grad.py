@@ -19,7 +19,7 @@ def subtract_backward(node):
     """
     ch1, ch2 = node._children
     ch1.grad += 1 * node.grad
-    ch2.grad -= 1 * node.grad
+    ch2.grad += -1 * node.grad
 
 
 def multipy_backward(node):
