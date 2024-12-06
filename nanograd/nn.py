@@ -29,7 +29,7 @@ class Layer:
 
 class MLP:
     def __init__(self, n_inputs, n_layers):
-        _n_layers = [n_inputs] + n_layers
+        _n_layers = [n_inputs] + list(n_layers)
         self.layers = [Layer(n_inputs=_n_layers[i], n_outputs=_n_layers[i+1])
                        for i in range(len(n_layers))]
 
@@ -44,3 +44,15 @@ class MLP:
     def zero_grad(self):
         for p in self.parameters():
             p.grad = 0.0
+
+
+class LinearRegression:
+    def __init__(self, n_inputs):
+        self.weights = [Scalar(random.uniform(-1, 1)) for _ in range(n_inputs)]
+        self.bias = Scalar(random.uniform(-1, 1))
+
+    def __call__(self, x):
+        return sum((xi*wi for xi, wi in zip(x, self.weights)), self.bias)
+
+    def parameters(self):
+        return self.weights + [self.bias]
