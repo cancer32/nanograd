@@ -49,6 +49,14 @@ class GradTest(unittest.TestCase):
         self.assertEqual(a.grad, (1-(b.item()**2)),
                          'Failed tanh backward test')
 
+    def test_log_backward(self):
+        a = nanograd.Scalar(100.0)
+        b = a.log()
+        b.grad = 1.0
+        grad.log_backward(b)
+        self.assertEqual(a.grad, 0.01,
+                         'Failed log backward test')
+
     def test_exp_backward(self):
         a = nanograd.Scalar(100.0)
         b = a.exp()
@@ -64,7 +72,6 @@ class GradTest(unittest.TestCase):
         grad.pow_backward(b)
         self.assertEqual(a.grad, 3 * (a.data ** 2) * 2,
                          'Failed pow backward test')
-
 
     def test_relu_backward(self):
         a = nanograd.Scalar(1.314)

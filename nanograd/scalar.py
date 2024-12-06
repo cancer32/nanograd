@@ -111,6 +111,13 @@ class Scalar(object):
         ret.grad_fn = grad.pow_backward
         return ret
 
+    def log(self):
+        ret = Scalar(math.log(self.data),
+                     _children=(self,),
+                     _op='log')
+        ret.grad_fn = grad.log_backward
+        return ret
+
     def tanh(self):
         ret = Scalar((math.exp(2*self.data) - 1)/(math.exp(2*self.data) + 1),
                      _children=(self,),

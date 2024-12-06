@@ -135,6 +135,11 @@ class ScalarTest(unittest.TestCase):
         self.assertAlmostEqual(x.tanh().item(), math.tanh(x.item()),
                                'Failed tanh test')
 
+    def test_log(self):
+        x = nanograd.Scalar(3.14)
+        self.assertAlmostEqual(x.log().item(), math.log(x.item()),
+                               'Failed log test')
+
     def test_relu(self):
         x = nanograd.Scalar(3.14)
         self.assertAlmostEqual(x.relu().item(), 3.14,

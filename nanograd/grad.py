@@ -82,3 +82,13 @@ def relu_backward(node):
     """
     child, = node._children
     child.grad += (child.data > 0 and 1 or 0) * node.grad
+
+
+def log_backward(node):
+    """Backpropogation function for log
+
+    :param node: Scalar node
+    :type node: nanograd.Scalar
+    """
+    child, = node._children
+    child.grad += (1/child.data) * node.grad
