@@ -46,7 +46,7 @@ class MLP:
             p.grad = 0.0
 
 
-class LinearRegression:
+class Linear:
     def __init__(self, n_inputs):
         self.weights = [Scalar(random.uniform(-1, 1)) for _ in range(n_inputs)]
         self.bias = Scalar(random.uniform(-1, 1))
