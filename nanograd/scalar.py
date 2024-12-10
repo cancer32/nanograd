@@ -111,6 +111,13 @@ class Scalar(object):
         ret.grad_fn = grad.pow_backward
         return ret
 
+    def abs(self):
+        ret = Scalar(abs(self.data),
+                     _children=(self,),
+                     _op='abs')
+        ret.grad_fn = grad.abs_backward
+        return ret
+
     def log(self):
         ret = Scalar(math.log(self.data),
                      _children=(self,),

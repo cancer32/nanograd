@@ -92,3 +92,13 @@ def log_backward(node):
     """
     child, = node._children
     child.grad += (1/child.data) * node.grad
+
+
+def abs_backward(node):
+    """Backpropogation function for absolute value
+
+    :param node: Scalar node
+    :type node: nanograd.Scalar
+    """
+    child, = node._children
+    child.grad += (child.data >= 0 and 1 or -1) * node.grad

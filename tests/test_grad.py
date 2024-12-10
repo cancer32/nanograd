@@ -80,3 +80,18 @@ class GradTest(unittest.TestCase):
         grad.relu_backward(b)
         self.assertEqual(a.grad, 1 * 2,
                          'Failed pow backward test')
+
+    def test_abs_backward(self):
+        a = nanograd.Scalar(-3.0)
+        b = a.abs()
+        b.grad = 1.0
+        grad.abs_backward(b)
+        self.assertEqual(a.grad, -1,
+                         'Failed abs backward test 1')
+
+        a = nanograd.Scalar(1.24)
+        b = a.abs()
+        b.grad = 1.0
+        grad.abs_backward(b)
+        self.assertEqual(a.grad, 1,
+                         'Failed abs backward test 2')
